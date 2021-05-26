@@ -35,6 +35,7 @@ subprojects {
         }
     }
     dependencies {
+        // 자동 로그인에 대한 설정 + security 실행
 //        developmentOnly("$boot:spring-boot-devtools")
         implementation "$boot:spring-boot-starter-security"
         implementation 'com.fasterxml.jackson.core:jackson-annotations'
