@@ -40,9 +40,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     //모든 페이지는 기본적으로 막고 있음, 매인 홈페이지는 접근하도록 하고싶은데 어떻게 해야할까?
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // configure의 annotation을 통해 구현된 코드들 확인
+        // http.antMatcher("/**") ; // 모든 접근에서 필터 적용하기
+
         http.authorizeRequests((requests) ->
                 // 어떤 요청이든 인증받은 상태에서 접근해라 라고 설정되어 있음
                 //requests.anyRequest().authenticated());
@@ -51,5 +53,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 requests.antMatchers("/").permitAll().anyRequest().authenticated());
         http.formLogin();
         http.httpBasic();
+
+        http.headers().disable()
+                .csrf().disable()
+                .requestCache().disable();  // 필터 사용하지 않겠다고 알림
+
     }
 }
